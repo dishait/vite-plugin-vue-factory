@@ -1,6 +1,6 @@
-# vite-plugin-template
+# vite-plugin-vue-factory
 
-开箱即用的 vite 插件模板
+vite的vue可视化工程管理插件
 
 <br />
 
@@ -90,7 +90,7 @@ pnpm release
 
 ## License
 
-Made with name
+Made with [markthree](https://github.com/markthree)
 
 Published under [MIT License](./LICENSE).
 
