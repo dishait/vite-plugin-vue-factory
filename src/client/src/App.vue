@@ -1,1 +1,3 @@
-<template> Hello, Vue Factory! </template>
+<template>
+	<router-view />
+</template>
