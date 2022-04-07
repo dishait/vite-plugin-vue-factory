@@ -4,9 +4,8 @@ export default defineConfig({
 	dts: true,
 	clean: true,
 	minify: true,
+	outDir: 'node',
 	splitting: true,
-	outDir: 'dist',
 	format: ['cjs', 'esm'],
-	entry: ['src/index.ts'],
-	noExternal: ['slash']
+	entry: ['src/node/index.ts']
 })

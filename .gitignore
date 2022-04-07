@@ -1,3 +1,5 @@
 dist
+/node
+/client
 coverage
 node_modules
