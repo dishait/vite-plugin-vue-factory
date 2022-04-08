@@ -12,6 +12,6 @@ const icon = computed(() => {
 	<div
 		:class="icon"
 		@click="toggleDark()"
-		class="cursor-pointer text-2xl"
+		class="cursor-pointer text-3xl"
 	></div>
 </template>

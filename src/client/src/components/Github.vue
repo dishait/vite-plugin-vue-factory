@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
 	<div
-		class="i-mdi:github-face text-2xl cursor-pointer"
+		class="i-mdi:github-face text-3xl cursor-pointer"
 		@click="to(link)"
 	/>
 </template>

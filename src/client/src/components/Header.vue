@@ -13,17 +13,13 @@ defineProps({
 
 <template>
 	<header
-		class="shadow px-2 h-15 flex sticky top-0 items-center justify-between dark:shadow-gray-600"
+		class="shadow px-2 h-18 flex sticky top-0 items-center justify-between dark:shadow-gray-600"
 	>
 		<section class="flex items-center">
-			<img
-				:src="logo"
-				title="logo"
-				class="w-9 ml-2 mr-4 mb-2"
-			/>
+			<img :src="logo" title="logo" class="w-10 mx-4" />
 			<h1 class="text-3xl">{{ title }}</h1>
 		</section>
-		<section class="mr-5 space-x-8 flex items-center">
+		<section class="mr-5 space-x-10 flex items-center">
 			<slot name="right" />
 		</section>
 	</header>
