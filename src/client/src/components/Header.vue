@@ -13,7 +13,7 @@ defineProps({
 
 <template>
 	<header
-		class="shadow px-2 h-15 flex items-center justify-between dark:shadow-gray-600"
+		class="shadow px-2 h-15 flex sticky top-0 items-center justify-between dark:shadow-gray-600"
 	>
 		<section class="flex items-center">
 			<img
