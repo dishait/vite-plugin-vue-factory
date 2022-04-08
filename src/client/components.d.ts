@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Github: typeof import('./src/components/Github.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     Modules: typeof import('./src/components/Modules.vue')['default']
     Theme: typeof import('./src/components/Theme.vue')['default']

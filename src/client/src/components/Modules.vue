@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { to } from '../shared/base'
+
 defineProps<{
 	modules: {
 		link?: string
@@ -7,10 +9,6 @@ defineProps<{
 		description?: string
 	}[]
 }>()
-
-const to = (link: string) => {
-	window.open(link, '_blank')
-}
 </script>
 
 <template>

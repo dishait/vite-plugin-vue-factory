@@ -23,7 +23,7 @@ defineProps({
 			/>
 			<h1 class="text-3xl">{{ title }}</h1>
 		</section>
-		<section class="mr-5">
+		<section class="mr-5 space-x-8 flex items-center">
 			<slot name="right" />
 		</section>
 	</header>
