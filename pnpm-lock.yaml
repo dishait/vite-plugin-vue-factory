@@ -49,6 +49,7 @@ importers:
 
   src/client:
     specifiers:
+      '@unocss/reset': ^0.30.12
       '@vitejs/plugin-vue': ^2.3.1
       '@vueuse/core': ^8.2.5
       pinia: ^2.0.13
@@ -64,6 +65,7 @@ importers:
     dependencies:
       vue: 3.2.31
     devDependencies:
+      '@unocss/reset': 0.30.12
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.1+vue@3.2.31
       '@vueuse/core': 8.2.5_vue@3.2.31
       pinia: 2.0.13_typescript@4.6.3+vue@3.2.31
@@ -292,6 +294,10 @@ packages:
 
   /@unocss/reset/0.30.11:
     resolution: {integrity: sha512-nWw7mvzgjRGa0f9KHpB5SOdP0p44OyKSLFfV/U97ge04eexKT7X1NfJ7mLZuhJp3B0ukf6oES0jtRNPZA1VIjA==}
+    dev: true
+
+  /@unocss/reset/0.30.12:
+    resolution: {integrity: sha512-WDlhGZ6VSj8T3mz6tR9WLJGEAQuApdFW3tsD6Sh93woIWs3vapz+9XHJwAHwcwz9qVHxcgl1oQA+8ixhv5P2cw==}
     dev: true
 
   /@unocss/scope/0.30.11:
