@@ -1,6 +1,7 @@
 import sirv from 'sirv'
 import { resolve } from 'path'
 import type { Plugin } from 'vite'
+import { toJson } from './shared/base'
 import Modules from 'vite-plugin-use-modules'
 import { createPluginName } from './shared/create'
 
@@ -24,6 +25,11 @@ const usePlugin = (
 						single: true
 					})
 				)
+
+				middlewares.use('/__factory_api', (req, res) => {
+					res.write(toJson({ bar: 2 }))
+					res.end()
+				})
 			}
 		}
 	]

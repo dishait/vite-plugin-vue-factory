@@ -1,89 +1,44 @@
 # vite-plugin-vue-factory
 
-vite的vue可视化工程管理插件
+`vite` 的 `vue` 可视化工程管理插件
 
 <br />
 
-## Features 🦖
+## 动机
 
-- pnpm 的
-- `vitest` 测试
-- 开箱即用的
-- `typescript` 的
+希望用可视化的方式管理 `vite` 下的 `vue` 项目
 
 <br />
 <br />
 
-## Usage 🦕
+## 特性
 
+- 自动安装模块
 
-### install
+<br />
+<br />
 
-```shell
-# 工作区安装
-pnpm i
+## 使用
 
-# 源码依赖安装
-pnpm i -w
-```
-
-### init:info
+### 安装
 
 ```shell
-pnpm init:info
+npm i vite-plugin-vue-factory -D
 ```
 
-### test
+TODO
 
-```shell
-pnpm test
+<br />
+<br />
 
-# or pnpm test:watch
-```
+## 组织 🦔
 
-### build
+欢迎关注 **帝莎编程**
 
-```shell
-pnpm build
-```
-
-### coverage
-
-```shell
-pnpm coverage
-```
-
-### dev
-
-```shell
-pnpm dev
-```
-
-### publish
-
-```shell
-npm publish
-```
-
-### play
-
-```shell
-# 工作区 dev
-pnpm play
-
-# or pnpm play:open
-# or pnpm play:host
-# or pnpm play:build
-# or pnpm play:preview
-# or pnpm play:preview:open
-# or pnpm play:preview:host
-```
-
-### release
-
-```shell
-pnpm release
-```
+- [官网](http://dishaxy.dishait.cn/)
+- [Gitee](https://gitee.com/dishait)
+- [Github](https://github.com/dishait)
+- [网易云课堂](https://study.163.com/provider/480000001892585/index.htm?share=2&shareId=480000001892585)
 
 <br />
 <br />
