@@ -9,8 +9,7 @@ defineProps<{
 }>()
 
 const to = (link: string) => {
-	// window.loaction.href = link
-	console.log(link)
+	window.open(link, '_blank')
 }
 </script>
 
@@ -22,7 +21,7 @@ const to = (link: string) => {
 		md="grid-cols-2 gap-7 p-20"
 	>
 		<section
-			class="flex shadow-lg rounded-lg p-6 items-center justify-center flex-col dark:shadow-gray-600 space-y-4"
+			class="flex shadow rounded-lg p-6 items-center justify-center flex-col dark:shadow-gray-600 space-y-4"
 			v-for="module of modules"
 			:key="module.title"
 		>
