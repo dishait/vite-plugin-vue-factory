@@ -1,0 +1,9 @@
+#app {
+	min-height: 100vh;
+	transition: all 0.2s ease-in-out;
+}
+
+.dark #app {
+	color: #adbac7;
+	background-color: #22272e;
+}

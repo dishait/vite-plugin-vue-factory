@@ -6,6 +6,11 @@ import Pages from 'vite-plugin-pages'
 import Modules from 'vite-plugin-use-modules'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import {
+	presetUno,
+	presetIcons,
+	presetAttributify
+} from 'unocss'
 
 export default defineConfig({
 	base: '/__factory/',
@@ -16,7 +21,13 @@ export default defineConfig({
 	plugins: [
 		Vue(),
 		Pages(),
-		Unocss(),
+		Unocss({
+			presets: [
+				presetUno(),
+				presetIcons(),
+				presetAttributify()
+			]
+		}),
 		Modules(),
 		Components(),
 		AutoImport({

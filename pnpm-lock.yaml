@@ -49,6 +49,7 @@ importers:
 
   src/client:
     specifiers:
+      '@iconify-json/ic': ^1.1.2
       '@unocss/reset': ^0.30.12
       '@vitejs/plugin-vue': ^2.3.1
       '@vueuse/core': ^8.2.5
@@ -65,6 +66,7 @@ importers:
     dependencies:
       vue: 3.2.31
     devDependencies:
+      '@iconify-json/ic': 1.1.2
       '@unocss/reset': 0.30.12
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.1+vue@3.2.31
       '@vueuse/core': 8.2.5_vue@3.2.31
@@ -98,6 +100,12 @@ packages:
 
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
+    dev: true
+
+  /@iconify-json/ic/1.1.2:
+    resolution: {integrity: sha512-OXLXNMECrwg1N7HqG9z+p8eF9NleoV5tZvIH/W3ip3HdZsg1VbEWl0RpI9K5VJjT95xVn2n+gcAgLPD5HNAsXg==}
+    dependencies:
+      '@iconify/types': 1.1.0
     dev: true
 
   /@iconify/types/1.1.0:
