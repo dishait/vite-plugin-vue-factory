@@ -1,13 +1,9 @@
 <script setup lang="ts">
+import { Modules } from '../../../shared/types'
 import { to } from '../shared/base'
 
 defineProps<{
-	modules: {
-		link: string
-		cover?: string
-		title: string
-		description?: string
-	}[]
+	modules: Modules
 }>()
 </script>
 
