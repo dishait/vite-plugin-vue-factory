@@ -3,7 +3,7 @@ import { to } from '../shared/base'
 
 defineProps<{
 	modules: {
-		link?: string
+		link: string
 		cover?: string
 		title: string
 		description?: string

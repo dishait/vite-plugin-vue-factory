@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ElementRef } from '../types/base'
+
 const modules = [
 	{
 		title: 'vue-router',

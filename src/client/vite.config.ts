@@ -6,11 +6,13 @@ import Pages from 'vite-plugin-pages'
 import Modules from 'vite-plugin-use-modules'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import {
 	presetUno,
 	presetIcons,
 	presetAttributify
 } from 'unocss'
+import GlobalApi from 'vite-plugin-global-api'
 
 export default defineConfig({
 	base: '/__factory/',
@@ -28,8 +30,11 @@ export default defineConfig({
 				presetAttributify()
 			]
 		}),
+		GlobalApi(),
 		Modules(),
-		Components(),
+		Components({
+			resolvers: [NaiveUiResolver()]
+		}),
 		AutoImport({
 			imports: [
 				'vue',

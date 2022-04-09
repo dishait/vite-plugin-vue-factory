@@ -6,7 +6,11 @@ declare module 'vue' {
   export interface GlobalComponents {
     Github: typeof import('./src/components/Github.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
+    Module: typeof import('./src/components/Module.vue')['default']
     Modules: typeof import('./src/components/Modules.vue')['default']
+    NModal: typeof import('naive-ui')['NModal']
+    NProgress: typeof import('naive-ui')['NProgress']
+    ProgressModal: typeof import('./src/components/ProgressModal.vue')['default']
     Theme: typeof import('./src/components/Theme.vue')['default']
   }
 }
