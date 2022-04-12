@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "vite-plugin-vue-factory",
   "description": "vite的vue可视化工程管理插件",
   "main": "./node/index.js",
