@@ -1,10 +1,52 @@
 <script setup lang="ts">
-import { Modules } from '../../../shared/types'
-import { to } from '../shared/base'
+import type {
+	Modules,
+	ExtractArrayItem
+} from '../../../shared/types'
+import { notice } from '../shared/notice'
 
 defineProps<{
 	modules: Modules
 }>()
+
+interface IProgresser {
+	open: Function
+	hidden: Function
+	percentage: number
+	status: 'initial' | 'success' | 'pending'
+	usePercentage: (v?: number) => number
+}
+
+const handleInstall = (
+	module: ExtractArrayItem<Modules>,
+	progresser: IProgresser
+) => {
+	let { open, hidden, usePercentage, percentage, status } =
+		progresser
+
+	if (status === 'success') {
+		return notice({
+			title: `${module!.title} 已安装`,
+			src: module.cover || ''
+		})
+	}
+
+	if (status === 'initial') {
+		const { pause } = useIntervalFn(() => {
+			if (usePercentage(percentage++) === 100) {
+				pause()
+				notice({
+					title: `${module!.title} 安装成功`,
+					src: module.cover || ''
+				})
+				useTimeoutFn(() => {
+					hidden()
+				}, 1000)
+			}
+		}, 100)
+	}
+	open()
+}
 </script>
 
 <template>
@@ -34,17 +76,14 @@ defineProps<{
 			</div>
 
 			<div class="flex w-full space-x-4">
-				<div
-					class="text-light-100 flex-1 cursor-pointer transition transition-colors bg-emerald-600 py-1 text-center rounded hover:bg-emerald-700"
-				>
-					安装
-				</div>
-				<div
-					class="cursor-pointer text-gray-600 transition transition-colors bg-gray-100 py-1 text-center rounded flex-1 hover:bg-gray-300"
-					@click="to(module.link)"
-				>
-					地址
-				</div>
+				<Progress v-slot="progresser">
+					<btn-install
+						:status="progresser.status"
+						:percentage="progresser.percentage"
+						@click="handleInstall(module, progresser)"
+					/>
+				</Progress>
+				<btn-link :link="module.link" />
 			</div>
 		</section>
 	</div>

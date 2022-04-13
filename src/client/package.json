@@ -24,7 +24,6 @@
     "unplugin-auto-import": "^0.6.9",
     "unplugin-vue-components": "^0.18.5",
     "vite": "^2.9.1",
-    "vite-plugin-global-api": "^0.0.2",
     "vite-plugin-pages": "^0.22.0",
     "vite-plugin-use-modules": "^1.0.1",
     "vue-router": "^4.0.14"

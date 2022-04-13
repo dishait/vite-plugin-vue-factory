@@ -12,7 +12,6 @@ import {
 	presetIcons,
 	presetAttributify
 } from 'unocss'
-import GlobalApi from 'vite-plugin-global-api'
 
 export default defineConfig({
 	base: '/__factory/',
@@ -30,9 +29,9 @@ export default defineConfig({
 				presetAttributify()
 			]
 		}),
-		GlobalApi(),
 		Modules(),
 		Components({
+			directoryAsNamespace: true,
 			resolvers: [NaiveUiResolver()]
 		}),
 		AutoImport({

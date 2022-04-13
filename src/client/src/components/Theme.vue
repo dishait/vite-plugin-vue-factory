@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+import { isDark, toggleDark } from '../shared/theme'
+
 const icon = computed(() => {
 	return isDark.value
 		? 'i-ic:outline-dark-mode'
