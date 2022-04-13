@@ -10,6 +10,7 @@ importers:
       chokidar: ^3.5.3
       esno: ^0.14.1
       execa: ^6.1.0
+      kolorist: ^1.5.1
       plop: ^3.0.5
       sirv: ^2.0.2
       tsup: ^5.12.4
@@ -18,6 +19,7 @@ importers:
       vite-plugin-use-modules: ^1.0.1
       vitest: ^0.1.27
     dependencies:
+      kolorist: 1.5.1
       sirv: 2.0.2
       vite-plugin-use-modules: 1.0.1
     devDependencies:
@@ -2096,7 +2098,6 @@ packages:
 
   /kolorist/1.5.1:
     resolution: {integrity: sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==}
-    dev: true
 
   /liftoff/4.0.0:
     resolution: {integrity: sha512-rMGwYF8q7g2XhG2ulBmmJgWv25qBsqRbDn5gH0+wnuyeFt7QBJlHJmtg5qEdn4pN6WVAUMgXnIxytMFRX9c1aA==}

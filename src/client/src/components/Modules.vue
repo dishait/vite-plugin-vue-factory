@@ -4,6 +4,8 @@ import type {
 	ExtractArrayItem
 } from '../../../shared/types'
 import { notice } from '../shared/notice'
+import { useStartInstalled } from '../shared/install'
+import { normalizePublicUrl } from '../shared/url'
 
 defineProps<{
 	modules: Modules
@@ -21,7 +23,7 @@ const handleInstall = (
 	module: ExtractArrayItem<Modules>,
 	progresser: IProgresser
 ) => {
-	let { open, hidden, usePercentage, percentage, status } =
+	let { open, status, hidden, percentage, usePercentage } =
 		progresser
 
 	if (status === 'success') {
@@ -31,21 +33,11 @@ const handleInstall = (
 		})
 	}
 
-	if (status === 'initial') {
-		const { pause } = useIntervalFn(() => {
-			if (usePercentage(percentage++) === 100) {
-				pause()
-				notice({
-					title: `${module!.title} 安装成功`,
-					src: module.cover || ''
-				})
-				useTimeoutFn(() => {
-					hidden()
-				}, 1000)
-			}
-		}, 100)
-	}
 	open()
+
+	if (useStartInstalled(module.title)) {
+		return
+	}
 }
 </script>
 
@@ -62,7 +54,7 @@ const handleInstall = (
 			:key="module.title"
 		>
 			<img
-				:src="module.cover"
+				:src="normalizePublicUrl(module.cover)"
 				:alt="module.title"
 				class="w-25 h-25"
 			/>

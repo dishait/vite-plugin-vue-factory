@@ -1,5 +1,6 @@
 <script setup lang="ts">
-defineProps({
+import { normalizePublicUrl } from '../shared/url'
+const props = defineProps({
 	logo: {
 		type: String,
 		default: '/favicon.svg'
@@ -9,6 +10,10 @@ defineProps({
 		default: 'factory'
 	}
 })
+
+const normalizedLogo = computed(() => {
+	return normalizePublicUrl(props.logo)
+})
 </script>
 
 <template>
@@ -17,7 +22,11 @@ defineProps({
 		dark="shadow-gray-600 bg-transparent"
 	>
 		<section class="flex items-center">
-			<img :src="logo" title="logo" class="w-10 mx-4" />
+			<img
+				:src="normalizedLogo"
+				title="logo"
+				class="w-10 mx-4"
+			/>
 			<h1 class="text-3xl">{{ title }}</h1>
 		</section>
 		<section class="mr-5 space-x-10 flex items-center">

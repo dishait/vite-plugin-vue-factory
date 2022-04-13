@@ -67,6 +67,7 @@
     "vitest": "^0.1.27"
   },
   "dependencies": {
+    "kolorist": "^1.5.1",
     "sirv": "^2.0.2",
     "vite-plugin-use-modules": "^1.0.1"
   }
