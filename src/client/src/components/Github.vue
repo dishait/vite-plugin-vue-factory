@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { to } from '../shared/base'
-
 defineProps<{
 	link: string
 }>()
 </script>
 
 <template>
-	<div
+	<a
+		:href="link"
+		target="_blank"
 		class="i-mdi:github-face text-3xl cursor-pointer"
-		@click="to(link)"
 	/>
 </template>
