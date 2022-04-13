@@ -15,4 +15,9 @@ export type Modules = {
 	 * 描述
 	 */
 	description?: string
+
+	install?: (useTask: (...rest: string[]) => void) => void
 }[]
+
+export type ExtractArrayItem<A extends unknown[]> =
+	A extends Array<infer R> ? R : never

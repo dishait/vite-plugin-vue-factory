@@ -61,7 +61,6 @@ importers:
       unplugin-auto-import: ^0.6.9
       unplugin-vue-components: ^0.18.5
       vite: ^2.9.1
-      vite-plugin-global-api: ^0.0.2
       vite-plugin-pages: ^0.22.0
       vite-plugin-use-modules: ^1.0.1
       vue: ^3.2.31
@@ -81,7 +80,6 @@ importers:
       unplugin-auto-import: 0.6.9_@vueuse+core@8.2.5+vite@2.9.1
       unplugin-vue-components: 0.18.5_vite@2.9.1+vue@3.2.31
       vite: 2.9.1
-      vite-plugin-global-api: 0.0.2
       vite-plugin-pages: 0.22.0_vite@2.9.1
       vite-plugin-use-modules: 1.0.1
       vue-router: 4.0.14_vue@3.2.31
@@ -3294,14 +3292,6 @@ packages:
 
   /vfonts/0.0.3:
     resolution: {integrity: sha512-nguyw8L6Un8eelg1vQ31vIU2ESxqid7EYmy8V+MDeMaHBqaRSkg3dTBToC1PR00D89UzS/SLkfYPnx0Wf23IQQ==}
-    dev: true
-
-  /vite-plugin-global-api/0.0.2:
-    resolution: {integrity: sha512-CEO35d8SEjvLVbiRqxO/fKBouUszuw2mVyV4NzWlEK8KPUrRukEnKPw15Ta+1GyJg/JHbYDhCH1CRTI1kReAZg==}
-    dependencies:
-      magic-string: 0.26.1
-      naive-ui: 2.27.0_vue@3.2.31
-      vue: 3.2.31
     dev: true
 
   /vite-plugin-inspect/0.3.15_vite@2.9.1:

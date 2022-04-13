@@ -5,7 +5,12 @@ export const modules: Modules = [
 		title: 'vue-router',
 		cover: '/modules/vue-router.png',
 		description: '官方路由',
-		link: 'https://router.vuejs.org'
+		link: 'https://router.vuejs.org',
+		install(useTask) {
+			useTask('Download package', 'vue-router -D')
+			useTask('Install Module', '...')
+			useTask('success')
+		}
 	},
 	{
 		title: 'pinia',
