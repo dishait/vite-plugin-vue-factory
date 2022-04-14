@@ -12,16 +12,16 @@ const message = computed(() => {
 		return '安装'
 	}
 
+	if (status === 'fail') {
+		return '重试'
+	}
+
 	if (status === 'pending' || percentage < 100) {
 		return `${percentage}%`
 	}
 
 	if (status === 'success') {
 		return '已安装'
-	}
-
-	if (status === 'fail') {
-		return '重试'
 	}
 })
 

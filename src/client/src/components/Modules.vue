@@ -20,8 +20,8 @@ const handleInstall = async (
 		close,
 		status,
 		useStatus,
-		usePercentage,
-		percentage
+		percentage,
+		usePercentage
 	} = progresser
 
 	const { cover, title } = module
@@ -68,14 +68,15 @@ const handleInstall = async (
 	}, 100)
 
 	const { onFetchError, onFetchResponse, data, error } =
-		useFetch(`/__factory?title=${title}`)
+		useFetch(`/__factory_api?title=${title}`).json()
 
 	// // 失败
 	onFetchError(() => {
+		pause()
 		notice({
 			src: cover,
 			title: `${title} 安装失败`,
-			description: error.value
+			description: data.value.msg
 		})
 		close()
 		useStatus('fail')
