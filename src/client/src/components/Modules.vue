@@ -48,20 +48,25 @@ const handleInstall = async (
 
 	open()
 
+	const success = () => {
+		pause()
+		usePercentage(100)
+		notice({
+			src: cover,
+			title: `${title} 已安装成功`
+		})
+		close()
+	}
+
 	const { pause, resume, isActive } = useIntervalFn(() => {
-		// 到 90 时，如果还没成功就锁住
-		if (percentage === 90 && useStatus() === 'pending') {
-			return pause()
+		// 完成时
+		if (percentage === 100 && useStatus() === 'success') {
+			success()
 		}
 
-		if (percentage === 100 && useStatus() === 'success') {
-			notice({
-				src: cover,
-				title: `${title} 已安装成功`
-			})
-			pause()
-			close()
-			return
+		// 到 99 时，如果还没成功就锁住
+		if (percentage === 99 && useStatus() === 'pending') {
+			return pause()
 		}
 
 		usePercentage(++percentage)
@@ -84,12 +89,12 @@ const handleInstall = async (
 
 	// // 成功返回，等待变动时恢复
 	onFetchResponse(() => {
-		console.log(data.value)
-		console.log('onFetchResponse')
-		watchOnce(isActive, () => {
-			useStatus('success')
+		useStatus('success')
+		if (!isActive.value) {
 			resume()
-		})
+		} else {
+			success()
+		}
 	})
 }
 </script>

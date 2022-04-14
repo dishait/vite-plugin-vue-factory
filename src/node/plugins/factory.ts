@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import { green } from 'kolorist'
 import { toJson } from '../shared/base'
 import { parseURL, parseQuery } from 'ufo'
+import { modules } from '../../config/node'
 import type { Plugin, ResolvedConfig } from 'vite'
 
 export default (): Plugin => {
@@ -26,8 +27,16 @@ export default (): Plugin => {
 				async (req, res) => {
 					const { search } = parseURL(req.url)
 					const title = parseQuery(search).title as string
+					const module = modules.find(
+						module => module.title === title
+					)
 					try {
-						throw new Error('错误的')
+						if (!module) {
+							throw new Error(
+								'该模块未设置安装流程，请联系作者修复'
+							)
+						}
+						await module.install()
 						res.statusCode = 200
 						res.write(
 							toJson({
