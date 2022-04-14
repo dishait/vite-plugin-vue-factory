@@ -10,6 +10,7 @@ export default (): Plugin => {
 	let config: ResolvedConfig
 	return {
 		name: 'vite-plugin-vue-factory',
+		enforce: 'post',
 		configResolved(_config) {
 			config = _config
 		},

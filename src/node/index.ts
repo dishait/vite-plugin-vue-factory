@@ -7,7 +7,7 @@ interface Options {}
 const usePlugin = (
 	options?: Partial<Options>
 ): Plugin[] => {
-	return [Modules(), Factory()]
+	return [Modules({ auto: true }), Factory()]
 }
 
 export default usePlugin
