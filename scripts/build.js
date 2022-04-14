@@ -16,6 +16,7 @@ const BuildClientWithWatching = () => {
 		const child_process = exec(command, { signal })
 		child_process.stdout.pipe(process.stdout)
 	})
+
 	watcher.on('all', debounce(building))
 }
 

@@ -21,6 +21,18 @@ const useStatus = (v: Status = status.value) => {
 const railColor = computed(() => {
 	return isDark.value ? '#343a40' : '#f3f4f6'
 })
+
+const props = defineProps<{ installed: boolean }>()
+
+watchOnce(
+	() => props.installed,
+	installed => {
+		if (installed) {
+			usePercentage(100)
+			useStatus('success')
+		}
+	}
+)
 </script>
 
 <template>

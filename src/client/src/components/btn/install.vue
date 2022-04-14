@@ -4,10 +4,15 @@ import type { Status } from '../../types/progresser'
 const props = defineProps<{
 	percentage: number
 	status: Status
+	isFetching: boolean
 }>()
 
 const message = computed(() => {
-	const { percentage, status } = props
+	const { percentage, status, isFetching } = props
+	if (isFetching) {
+		return '加载中...'
+	}
+
 	if (status === 'initial') {
 		return '安装'
 	}

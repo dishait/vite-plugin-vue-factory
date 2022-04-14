@@ -11,10 +11,19 @@ defineProps<{
 	modules: Modules
 }>()
 
+const { data: installeds, isFetching } = useFetch(
+	'/__factory_api_installeds',
+	{ initialData: {} }
+).json()
+
 const handleInstall = async (
 	module: ExtractArrayItem<Modules>,
 	progresser: IProgresser
 ) => {
+	if (isFetching.value) {
+		return
+	}
+
 	let {
 		open,
 		close,
@@ -72,10 +81,11 @@ const handleInstall = async (
 		usePercentage(++percentage)
 	}, 100)
 
-	const { onFetchError, onFetchResponse, data, error } =
-		useFetch(`/__factory_api?title=${title}`).json()
+	const { onFetchError, onFetchResponse, data } = useFetch(
+		`/__factory_api?title=${title}`
+	).json()
 
-	// // 失败
+	// 失败
 	onFetchError(() => {
 		pause()
 		notice({
@@ -87,7 +97,7 @@ const handleInstall = async (
 		useStatus('fail')
 	})
 
-	// // 成功返回，等待变动时恢复
+	// 成功返回，等待变动时恢复
 	onFetchResponse(() => {
 		useStatus('success')
 		if (!isActive.value) {
@@ -126,8 +136,12 @@ const handleInstall = async (
 			</div>
 
 			<div class="flex w-full space-x-4">
-				<Progress v-slot="progresser">
+				<Progress
+					v-slot="progresser"
+					:installed="installeds[module.title]"
+				>
 					<btn-install
+						:isFetching="isFetching"
 						:status="progresser.status"
 						:percentage="progresser.percentage"
 						@click="handleInstall(module, progresser)"

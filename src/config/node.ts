@@ -1,4 +1,5 @@
 import { green } from 'kolorist'
+import { readPackageSync } from 'read-pkg'
 import { outputFile, pathExistsSync } from 'fs-extra'
 import { installPackage } from '@antfu/install-pkg'
 
@@ -19,10 +20,21 @@ const logSuccess = (title: string) => {
 	)
 }
 
+const isPackageExists = (name: string) => {
+	const packgaeInfo = readPackageSync()
+	return (
+		packgaeInfo?.['dependencies']?.[name] ||
+		packgaeInfo?.['devDependencies']?.[name]
+	)
+}
+
 // 该模块运行在 node 中，请不要在 client 中引入
 export const modules = [
 	{
 		title: 'vue-router',
+		async checkInstalled() {
+			return isPackageExists('vue-router')
+		},
 		async install() {
 			await installPackage('vue-router')
 
@@ -58,6 +70,9 @@ export default app => app.use(router)`
 	},
 	{
 		title: 'pinia',
+		async checkInstalled() {
+			return isPackageExists('pinia')
+		},
 		async install() {
 			await installPackage('pinia')
 
@@ -83,6 +98,9 @@ export default (app: App) => app.use(createPinia())`
 	},
 	{
 		title: 'vueuse',
+		async checkInstalled() {
+			return isPackageExists('@vueuse/core')
+		},
 		async install() {
 			await installPackage('@vueuse/core')
 			logSuccess('vueuse')
@@ -90,10 +108,16 @@ export default (app: App) => app.use(createPinia())`
 	},
 	{
 		title: 'windicss',
+		async checkInstalled() {
+			return isPackageExists('windicss')
+		},
 		async install() {}
 	},
 	{
 		title: 'vue-request',
+		async checkInstalled() {
+			return isPackageExists('vue-request')
+		},
 		async install() {
 			await installPackage('vue-request')
 			logSuccess('vue-request')
@@ -101,6 +125,9 @@ export default (app: App) => app.use(createPinia())`
 	},
 	{
 		title: 'unocss',
+		async checkInstalled() {
+			return isPackageExists('unocss')
+		},
 		async install() {}
 	}
 ]

@@ -59,6 +59,27 @@ export default (): Plugin => {
 				}
 			)
 
+			middlewares.use(
+				'/__factory_api_installeds',
+				async (_, res) => {
+					const installedTitles = []
+					const installedPromises = []
+					for (const { checkInstalled, title } of modules) {
+						installedTitles.push(title)
+						installedPromises.push(checkInstalled())
+					}
+					const results = await Promise.all(
+						installedPromises
+					)
+					const installeds = {} as any
+					installedTitles.forEach((title, index) => {
+						installeds[title] = Boolean(results[index])
+					})
+					res.write(toJson(installeds))
+					res.end()
+				}
+			)
+
 			httpServer?.once('listening', () => {
 				setImmediate(() => {
 					const { port, https } = config.server
