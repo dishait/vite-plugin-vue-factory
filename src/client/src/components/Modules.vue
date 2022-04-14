@@ -2,51 +2,103 @@
 import type {
 	Modules,
 	ExtractArrayItem
-} from '../../../shared/types'
+} from '../../../config/client'
 import { notice } from '../shared/notice'
-import { useStartInstalled } from '../shared/install'
 import { normalizePublicUrl } from '../shared/url'
+import type { IProgresser } from '../types/progresser'
 
 defineProps<{
 	modules: Modules
 }>()
 
-interface IProgresser {
-	open: Function
-	hidden: Function
-	percentage: number
-	status: 'initial' | 'success' | 'pending'
-	usePercentage: (v?: number) => number
-}
-
-const handleInstall = (
+const handleInstall = async (
 	module: ExtractArrayItem<Modules>,
 	progresser: IProgresser
 ) => {
-	let { open, status, hidden, percentage, usePercentage } =
-		progresser
+	let {
+		open,
+		close,
+		status,
+		useStatus,
+		usePercentage,
+		percentage
+	} = progresser
 
+	const { cover, title } = module
+
+	if (status === 'pending') {
+		return open()
+	}
+
+	// 成功
 	if (status === 'success') {
 		return notice({
-			title: `${module!.title} 已安装`,
-			src: module.cover || ''
+			src: cover,
+			title: `${title} 已安装成功`
 		})
 	}
 
+	if (status === 'fail') {
+		usePercentage(0)
+		await nextTick()
+	}
+
+	// 加载中
+	useStatus('pending')
+
 	open()
 
-	if (useStartInstalled(module.title)) {
-		return
-	}
+	const { pause, resume, isActive } = useIntervalFn(() => {
+		// 到 90 时，如果还没成功就锁住
+		if (percentage === 90 && useStatus() === 'pending') {
+			return pause()
+		}
+
+		if (percentage === 100 && useStatus() === 'success') {
+			notice({
+				src: cover,
+				title: `${title} 已安装成功`
+			})
+			pause()
+			close()
+			return
+		}
+
+		usePercentage(++percentage)
+	}, 100)
+
+	const { onFetchError, onFetchResponse, data, error } =
+		useFetch(`/__factory?title=${title}`)
+
+	// // 失败
+	onFetchError(() => {
+		notice({
+			src: cover,
+			title: `${title} 安装失败`,
+			description: error.value
+		})
+		close()
+		useStatus('fail')
+	})
+
+	// // 成功返回，等待变动时恢复
+	onFetchResponse(() => {
+		console.log(data.value)
+		console.log('onFetchResponse')
+		watchOnce(isActive, () => {
+			useStatus('success')
+			resume()
+		})
+	})
 }
 </script>
 
 <template>
 	<div
-		class="p-10 grid gap-5 grid-cols-1"
 		xl="grid-cols-4 gap-20"
 		lg="grid-cols-3 gap-10"
 		md="grid-cols-2 gap-7 p-20"
+		class="p-10 grid gap-5 grid-cols-1"
 	>
 		<section
 			class="flex shadow rounded-lg p-6 items-center justify-center flex-col dark:shadow-gray-600 space-y-4"

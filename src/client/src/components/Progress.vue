@@ -1,32 +1,22 @@
 <script setup lang="ts">
 import { isDark } from '../shared/theme'
+import { Status } from '../types/progresser'
 
 const percentage = useClamp(0, 0, 100)
 
 const [visible, toggleVisible] = useToggle()
 
 const open = () => toggleVisible(true)
+const close = () => toggleVisible(false)
 
-const hidden = () => toggleVisible(false)
-
-const usePercentage = (v?: number) => {
-	if (!v) {
-		return percentage.value
-	}
+const usePercentage = (v: number = percentage.value) => {
 	return (percentage.value = v)
 }
 
-const status = computed(() => {
-	if (percentage.value === 0) {
-		return 'initial'
-	}
-
-	if (percentage.value === 100) {
-		return 'success'
-	}
-
-	return 'pending'
-})
+const status = ref<Status>('initial')
+const useStatus = (v: Status = status.value) => {
+	return (status.value = v)
+}
 
 const railColor = computed(() => {
 	return isDark.value ? '#343a40' : '#f3f4f6'
@@ -36,8 +26,9 @@ const railColor = computed(() => {
 <template>
 	<slot
 		:open="open"
-		:hidden="hidden"
+		:close="close"
 		:status="status"
+		:useStatus="useStatus"
 		:percentage="percentage"
 		:usePercentage="usePercentage"
 	/>

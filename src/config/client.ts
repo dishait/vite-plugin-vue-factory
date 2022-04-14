@@ -1,16 +1,31 @@
-import { Modules } from './types'
+export type ExtractArrayItem<T extends unknown[]> =
+	T extends (infer R)[] ? R : never
+
+export type Modules = {
+	/**
+	 * 链接
+	 */
+	link: string
+	/**
+	 * 封面
+	 */
+	cover: string
+	/**
+	 * 标题
+	 */
+	title: string
+	/**
+	 * 描述
+	 */
+	description: string
+}[]
 
 export const modules: Modules = [
 	{
 		title: 'vue-router',
 		cover: '/modules/vue-router.png',
 		description: '官方路由',
-		link: 'https://router.vuejs.org',
-		install(useTask) {
-			useTask('Download package', 'vue-router -D')
-			useTask('Install Module', '...')
-			useTask('success')
-		}
+		link: 'https://router.vuejs.org'
 	},
 	{
 		title: 'pinia',

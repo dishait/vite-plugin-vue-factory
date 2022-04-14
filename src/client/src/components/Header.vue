@@ -23,9 +23,9 @@ const normalizedLogo = computed(() => {
 	>
 		<section class="flex items-center">
 			<img
-				:src="normalizedLogo"
 				title="logo"
 				class="w-10 mx-4"
+				:src="normalizedLogo"
 			/>
 			<h1 class="text-3xl">{{ title }}</h1>
 		</section>

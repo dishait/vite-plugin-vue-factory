@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { modules } from '../../../shared/modules'
+import { modules } from '../../../config/client'
 </script>
 
 <template>
