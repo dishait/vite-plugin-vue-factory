@@ -46,12 +46,18 @@ importers:
   examples/vite:
     specifiers:
       '@vitejs/plugin-vue': ^2.3.1
+      '@vueuse/core': ^8.2.5
+      pinia: ^2.0.13
       vite: ^2.9.4
       vite-plugin-inspect: ^0.3.15
       vite-plugin-vue-factory: workspace:*
       vue: ^3.2.32
+      vue-request: ^1.2.4
       vue-router: ^4.0.14
     dependencies:
+      '@vueuse/core': 8.2.5_vue@3.2.32
+      pinia: 2.0.13_typescript@4.6.3+vue@3.2.32
+      vue-request: 1.2.4_vue@3.2.32
       vue-router: 4.0.14_vue@3.2.32
     devDependencies:
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.4+vue@3.2.32
@@ -499,11 +505,9 @@ packages:
       '@vueuse/shared': 8.2.5_vue@3.2.32
       vue: 3.2.32
       vue-demi: 0.12.5_vue@3.2.32
-    dev: true
 
   /@vueuse/metadata/8.2.5:
     resolution: {integrity: sha512-Lk9plJjh9cIdiRdcj16dau+2LANxIdFCiTgdfzwYXbflxq0QnMBeOD2qHgKDE7fuVrtPcVWj8VSuZEx1HRfNQA==}
-    dev: true
 
   /@vueuse/shared/8.2.5_vue@3.2.32:
     resolution: {integrity: sha512-lNWo+7sk6JCuOj4AiYM+6HZ6fq4xAuVq1sVckMQKgfCJZpZRe4i8es+ZULO5bYTKP+VrOCtqrLR2GzEfrbr3YQ==}
@@ -518,7 +522,6 @@ packages:
     dependencies:
       vue: 3.2.32
       vue-demi: 0.12.5_vue@3.2.32
-    dev: true
 
   /aggregate-error/3.1.0:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
@@ -2626,7 +2629,6 @@ packages:
       typescript: 4.6.3
       vue: 3.2.32
       vue-demi: 0.12.5_vue@3.2.32
-    dev: true
 
   /pirates/4.0.5:
     resolution: {integrity: sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ==}
@@ -3431,7 +3433,14 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.32
-    dev: true
+
+  /vue-request/1.2.4_vue@3.2.32:
+    resolution: {integrity: sha512-i+i+6Fog6F8EtYUeueumzKS9Sg06CvjsMXH8TK0YSBxY4sDxIJ+snTEke5rLqiV9d19DTuJOxPQFjTBUpsMtXA==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.2.32
+    dev: false
 
   /vue-router/4.0.14_vue@3.2.32:
     resolution: {integrity: sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==}

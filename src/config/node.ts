@@ -1,5 +1,4 @@
 import { green } from 'kolorist'
-import { basename, extname } from 'path'
 import { outputFile, pathExistsSync } from 'fs-extra'
 import { installPackage } from '@antfu/install-pkg'
 
@@ -59,11 +58,35 @@ export default app => app.use(router)`
 	},
 	{
 		title: 'pinia',
-		async install() {}
+		async install() {
+			await installPackage('pinia')
+
+			const path = 'src/modules/pinia'
+
+			const ts = `import type { App } from "vue"
+
+import { createPinia } from "pinia"
+
+export default (app: App) => app.use(createPinia())`
+
+			const js = `import { createPinia } from "pinia"
+			
+			export default app => app.use(createPinia())`
+
+			await outputFile(
+				generateModule(path),
+				useContent(ts, js)
+			)
+
+			logSuccess('vue-router')
+		}
 	},
 	{
 		title: 'vueuse',
-		async install() {}
+		async install() {
+			await installPackage('@vueuse/core')
+			logSuccess('vueuse')
+		}
 	},
 	{
 		title: 'windicss',
@@ -71,7 +94,10 @@ export default app => app.use(router)`
 	},
 	{
 		title: 'vue-request',
-		async install() {}
+		async install() {
+			await installPackage('vue-request')
+			logSuccess('vue-request')
+		}
 	},
 	{
 		title: 'unocss',
