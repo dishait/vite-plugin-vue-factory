@@ -1,7 +1,24 @@
-import { installPackage } from '@antfu/install-pkg'
 import { green } from 'kolorist'
+import { basename, extname } from 'path'
+import { outputFile, pathExistsSync } from 'fs-extra'
+import { installPackage } from '@antfu/install-pkg'
 
-import { outputFile } from 'fs-extra'
+const isTs = pathExistsSync('tsconfig.json')
+
+const generateModule = (path: string) => {
+	const ext = isTs ? '.ts' : '.js'
+	return path.replace(/\.(.*)$/, '') + ext
+}
+
+const useContent = (ts: string, js: string) => {
+	return isTs ? ts : js
+}
+
+const logSuccess = (title: string) => {
+	return console.log(
+		`\n 🍃 Factory: ${green(`${title} install success`)}`
+	)
+}
 
 // 该模块运行在 node 中，请不要在 client 中引入
 export const modules = [
@@ -10,16 +27,34 @@ export const modules = [
 		async install() {
 			await installPackage('vue-router')
 
+			const path = 'src/modules/router'
+
+			const ts = `import type { App } from "vue"
+			
+import { createRouter, createWebHistory } from "vue-router"
+
+export const router = createRouter({
+	routes: [],
+	history: createWebHistory(),
+})
+
+export default (app: App) => app.use(router)`
+
+			const js = `import { createRouter, createWebHistory } from "vue-router"
+
+export const router = createRouter({
+	routes: [],
+	history: createWebHistory(),
+})
+
+export default app => app.use(router)`
+
 			await outputFile(
-				'src/modules/router.ts',
-				`import { createRouter, createWebHistory } from "vue-router"`
+				generateModule(path),
+				useContent(ts, js)
 			)
 
-			console.log(
-				`\n 🍃 Factory: ${green(
-					'vue-router install success'
-				)}`
-			)
+			logSuccess('vue-router')
 		}
 	},
 	{
