@@ -1,86 +1,87 @@
 {
-  "version": "0.0.4",
-  "name": "vite-plugin-vue-factory",
-  "description": "vite的vue可视化工程管理插件",
-  "main": "./node/index.js",
-  "module": "./node/index.mjs",
-  "types": "./node/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dishait/vite-plugin-vue-factory.git"
-  },
-  "exports": {
-    "./*": "./*",
-    ".": {
-      "require": "./node/index.js",
-      "import": "./node/index.mjs",
-      "types": "./node/index.d.ts"
-    }
-  },
-  "files": [
-    "node",
-    "client",
-    "client.d.ts"
-  ],
-  "scripts": {
-    "test": "vitest",
-    "dev": "node scripts/build",
-    "test:watch": "vitest --watch",
-    "coverage": "vitest --coverage",
-    "play": "pnpm -C examples/vite run dev",
-    "init:info": "plop --plopfile scripts/init.js",
-    "build": "tsup && pnpm run --filter ./src/client build",
-    "release": "bumpp --commit --push --tag && npm publish",
-    "play:open": "pnpm -C examples/vite run dev:open",
-    "play:host": "pnpm -C examples/vite run dev:host",
-    "play:build": "pnpm -C examples/vite run build",
-    "play:preview": "pnpm -C examples/vite run preview",
-    "play:preview:open": "pnpm -C examples/vite run preview:open",
-    "play:preview:host": "pnpm -C examples/vite run preview:host"
-  },
-  "keywords": [
-    "vite",
-    "plugin",
-    "template"
-  ],
-  "author": {
-    "email": "1801982702@qq.com",
-    "name": "markthree",
-    "url": "https://github.com/markthree"
-  },
-  "bugs": {
-    "email": "1801982702@qq.com",
-    "url": "https://github.com/dishait/vite-plugin-vue-factory/issues"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^17.0.24",
-    "bumpp": "^7.1.1",
-    "c8": "^7.11.0",
-    "chokidar": "^3.5.3",
-    "esno": "^0.14.1",
-    "execa": "^6.1.0",
-    "plop": "^3.0.5",
-    "tsup": "^5.12.5",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.4",
-    "vitest": "^0.1.27"
-  },
-  "dependencies": {
-    "@antfu/install-pkg": "^0.1.0",
-    "@types/fs-extra": "^9.0.13",
-    "fs-extra": "^10.0.1",
-    "kolorist": "^1.5.1",
-    "read-pkg": "^7.1.0",
-    "sirv": "^2.0.2",
-    "ufo": "^0.8.3",
-    "vite-plugin-use-modules": "^1.1.0"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "vue"
-      ]
-    }
-  }
+	"version": "0.0.4",
+	"name": "vite-plugin-vue-factory",
+	"description": "vite的vue可视化工程管理插件",
+	"main": "./node/index.js",
+	"module": "./node/index.mjs",
+	"types": "./node/index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dishait/vite-plugin-vue-factory.git"
+	},
+	"exports": {
+		"./*": "./*",
+		".": {
+			"require": "./node/index.js",
+			"import": "./node/index.mjs",
+			"types": "./node/index.d.ts"
+		}
+	},
+	"files": [
+		"node",
+		"client",
+		"client.d.ts"
+	],
+	"scripts": {
+		"test": "vitest",
+		"dev": "node scripts/build",
+		"test:watch": "vitest --watch",
+		"coverage": "vitest --coverage",
+		"prepublishOnly": "pnpm run build",
+		"play": "pnpm -C examples/vite run dev",
+		"init:info": "plop --plopfile scripts/init.js",
+		"build": "tsup && pnpm run --filter ./src/client build",
+		"release": "bumpp --commit --push --tag && npm publish",
+		"play:open": "pnpm -C examples/vite run dev:open",
+		"play:host": "pnpm -C examples/vite run dev:host",
+		"play:build": "pnpm -C examples/vite run build",
+		"play:preview": "pnpm -C examples/vite run preview",
+		"play:preview:open": "pnpm -C examples/vite run preview:open",
+		"play:preview:host": "pnpm -C examples/vite run preview:host"
+	},
+	"keywords": [
+		"vite",
+		"plugin",
+		"template"
+	],
+	"author": {
+		"email": "1801982702@qq.com",
+		"name": "markthree",
+		"url": "https://github.com/markthree"
+	},
+	"bugs": {
+		"email": "1801982702@qq.com",
+		"url": "https://github.com/dishait/vite-plugin-vue-factory/issues"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^17.0.24",
+		"bumpp": "^7.1.1",
+		"c8": "^7.11.0",
+		"chokidar": "^3.5.3",
+		"esno": "^0.14.1",
+		"execa": "^6.1.0",
+		"plop": "^3.0.5",
+		"tsup": "^5.12.5",
+		"typescript": "^4.6.3",
+		"vite": "^2.9.4",
+		"vitest": "^0.1.27"
+	},
+	"dependencies": {
+		"@antfu/install-pkg": "^0.1.0",
+		"@types/fs-extra": "^9.0.13",
+		"fs-extra": "^10.0.1",
+		"kolorist": "^1.5.1",
+		"read-pkg": "^7.1.0",
+		"sirv": "^2.0.2",
+		"ufo": "^0.8.3",
+		"vite-plugin-use-modules": "^1.1.0"
+	},
+	"pnpm": {
+		"peerDependencyRules": {
+			"ignoreMissing": [
+				"vue"
+			]
+		}
+	}
 }

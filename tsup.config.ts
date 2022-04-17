@@ -7,5 +7,6 @@ export default defineConfig({
 	outDir: 'node',
 	splitting: true,
 	format: ['cjs', 'esm'],
-	entry: ['src/node/index.ts']
+	entry: ['src/node/index.ts'],
+	noExternal: ['read-pkg']
 })
