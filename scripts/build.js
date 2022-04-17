@@ -11,9 +11,13 @@ const BuildClientWithWatching = () => {
 		'src/client/vite.config.ts'
 	]
 	const watcher = watch(targets)
+	let child_process = null
 	const building = createSingleChildProcessScope(signal => {
+		if (child_process) {
+			child_process.stdout.unpipe(process.stdout)
+		}
 		const command = 'pnpm -C src/client run build'
-		const child_process = exec(command, { signal })
+		child_process = exec(command, { signal })
 		child_process.stdout.pipe(process.stdout)
 	})
 
