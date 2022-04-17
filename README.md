@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="100%" height="100%" src="https://gitee.com/dishait/vite-plugin-vue-factory/raw/main/vite-plugin-vue-factory.gif" />
+    <img width="100%" height="100%" src="./vite-plugin-vue-factory.gif" />
     <h1>vite-plugin-vue-factory</h1>
     <p>vite 的 vue 可视化工程管理插件</p>
 </div>
