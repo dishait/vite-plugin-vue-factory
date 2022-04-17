@@ -1,7 +1,10 @@
-# vite-plugin-vue-factory
+<div align="center">
+    <img width="100%" height="100%" src="./vite-plugin-vue-factory.gif" />
+    <h1>vite-plugin-vue-factory</h1>
+    <p>vite 的 vue 可视化工程管理插件</p>
+</div>
 
-`vite` 的 `vue` 可视化工程管理插件
-
+<br />
 <br />
 
 ## 动机
