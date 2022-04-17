@@ -26,24 +26,6 @@ const logSuccess = (title: string) => {
 	)
 }
 
-const setupVitePlugin = async (i: string, p: string) => {
-	const path = generateModulePath('vite.config')
-	const viteConfig = await readFile(path)
-	const s = new MagicString(viteConfig.toString())
-	s.prepend(i + '\n')
-	s.replace(/(?<=plugins)([\w\W]*?)(?=])/, `$1, ${p}`)
-	await writeFile(path, s.toString())
-	return
-}
-
-const appendLeft = async (path: string, i: string) => {
-	const viteConfig = await readFile(path)
-	const s = new MagicString(viteConfig.toString())
-	s.prepend(i + '\n')
-	await writeFile(path, s.toString())
-	return
-}
-
 const isPackageExists = (name: string) => {
 	const packgaeInfo = readPackageSync()
 	return Boolean(
@@ -131,29 +113,6 @@ export default (app: App) => app.use(createPinia())`
 		}
 	},
 	{
-		title: 'windicss',
-		async checkInstalled() {
-			return (
-				isPackageExists('windicss') &&
-				isPackageExists('vite-plugin-windicss')
-			)
-		},
-		async install() {
-			await installPackage([
-				'windicss',
-				'vite-plugin-windicss'
-			])
-
-			const main = generateModulePath('src/main.ts')
-			appendLeft(main, `import "virtual:windi.css"`)
-
-			await setupVitePlugin(
-				'import Windicss from "vite-plugin-windicss"',
-				'Windicss()'
-			)
-		}
-	},
-	{
 		title: 'vue-request',
 		async checkInstalled() {
 			return isPackageExists('vue-request')
@@ -162,12 +121,5 @@ export default (app: App) => app.use(createPinia())`
 			await installPackage('vue-request')
 			logSuccess('vue-request')
 		}
-	},
-	{
-		title: 'unocss',
-		async checkInstalled() {
-			return isPackageExists('unocss')
-		},
-		async install() {}
 	}
 ]
