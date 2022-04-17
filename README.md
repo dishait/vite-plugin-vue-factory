@@ -29,7 +29,26 @@
 npm i vite-plugin-vue-factory -D
 ```
 
-TODO
+<br />
+
+### 配置
+
+```js
+// vite.config.js
+import { defineConfig } from 'vite'
+import Vue from '@vitejs/plugin-vue'
+import Factory from 'vite-plugin-vue-factory'
+
+export default defineConfig({
+	plugins: [Vue(), Factory()]
+})
+```
+
+<br />
+
+### 启动
+
+进入 `http://localhost:3000/__factory` 即可进行安装
 
 <br />
 <br />
@@ -53,3 +72,4 @@ Made with [markthree](https://github.com/markthree)
 Published under [MIT License](./LICENSE).
 
 <br />
+```
