@@ -72,6 +72,7 @@
 		"@types/fs-extra": "^9.0.13",
 		"fs-extra": "^10.0.1",
 		"kolorist": "^1.5.1",
+		"magic-string": "^0.26.1",
 		"read-pkg": "^7.1.0",
 		"sirv": "^2.0.2",
 		"ufo": "^0.8.3",

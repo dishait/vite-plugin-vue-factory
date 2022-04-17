@@ -1,13 +1,19 @@
 import { green } from 'kolorist'
+import MagicString from 'magic-string'
 import { readPackageSync } from 'read-pkg'
-import { outputFile, pathExistsSync } from 'fs-extra'
 import { installPackage } from '@antfu/install-pkg'
+import {
+	readFile,
+	outputFile,
+	writeFile,
+	pathExistsSync
+} from 'fs-extra'
 
 const isTs = pathExistsSync('tsconfig.json')
 
-const generateModule = (path: string) => {
+const generateModulePath = (path: string) => {
 	const ext = isTs ? '.ts' : '.js'
-	return path.replace(/\.(.*)$/, '') + ext
+	return path.replace(/\.(ts|js)$/, '') + ext
 }
 
 const useContent = (ts: string, js: string) => {
@@ -20,11 +26,29 @@ const logSuccess = (title: string) => {
 	)
 }
 
+const setupVitePlugin = async (i: string, p: string) => {
+	const path = generateModulePath('vite.config')
+	const viteConfig = await readFile(path)
+	const s = new MagicString(viteConfig.toString())
+	s.prepend(i + '\n')
+	s.replace(/(?<=plugins)([\w\W]*?)(?=])/, `$1, ${p}`)
+	await writeFile(path, s.toString())
+	return
+}
+
+const appendLeft = async (path: string, i: string) => {
+	const viteConfig = await readFile(path)
+	const s = new MagicString(viteConfig.toString())
+	s.prepend(i + '\n')
+	await writeFile(path, s.toString())
+	return
+}
+
 const isPackageExists = (name: string) => {
 	const packgaeInfo = readPackageSync()
-	return (
+	return Boolean(
 		packgaeInfo?.['dependencies']?.[name] ||
-		packgaeInfo?.['devDependencies']?.[name]
+			packgaeInfo?.['devDependencies']?.[name]
 	)
 }
 
@@ -61,7 +85,7 @@ export const router = createRouter({
 export default app => app.use(router)`
 
 			await outputFile(
-				generateModule(path),
+				generateModulePath(path),
 				useContent(ts, js)
 			)
 
@@ -89,7 +113,7 @@ export default (app: App) => app.use(createPinia())`
 			export default app => app.use(createPinia())`
 
 			await outputFile(
-				generateModule(path),
+				generateModulePath(path),
 				useContent(ts, js)
 			)
 
@@ -109,9 +133,25 @@ export default (app: App) => app.use(createPinia())`
 	{
 		title: 'windicss',
 		async checkInstalled() {
-			return isPackageExists('windicss')
+			return (
+				isPackageExists('windicss') &&
+				isPackageExists('vite-plugin-windicss')
+			)
 		},
-		async install() {}
+		async install() {
+			await installPackage([
+				'windicss',
+				'vite-plugin-windicss'
+			])
+
+			const main = generateModulePath('src/main.ts')
+			appendLeft(main, `import "virtual:windi.css"`)
+
+			await setupVitePlugin(
+				'import Windicss from "vite-plugin-windicss"',
+				'Windicss()'
+			)
+		}
 	},
 	{
 		title: 'vue-request',

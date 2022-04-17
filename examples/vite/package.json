@@ -1,28 +1,28 @@
 {
-  "name": "vite-example",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "dev:open": "vite --open",
-    "dev:host": "vite --host",
-    "build": "vite build",
-    "preview": "vite preview",
-    "preview:open": "vite preview --open",
-    "preview:host": "vite preview --host"
-  },
-  "author": "markthree",
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.1",
-    "vite": "^2.9.4",
-    "vite-plugin-inspect": "^0.3.15",
-    "vite-plugin-vue-factory": "workspace:*",
-    "vue": "^3.2.33"
-  },
-  "dependencies": {
-    "@vueuse/core": "^8.2.6",
-    "pinia": "^2.0.13",
-    "vue-request": "^1.2.4",
-    "vue-router": "^4.0.14"
-  }
+	"name": "vite-example",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"dev": "vite",
+		"dev:open": "vite --open",
+		"dev:host": "vite --host",
+		"build": "vite build",
+		"preview": "vite preview",
+		"preview:open": "vite preview --open",
+		"preview:host": "vite preview --host"
+	},
+	"author": "markthree",
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^2.3.1",
+		"vite": "^2.9.4",
+		"vite-plugin-inspect": "^0.3.15",
+		"vite-plugin-vue-factory": "workspace:*",
+		"vue": "^3.2.33"
+	},
+	"dependencies": {
+		"@vueuse/core": "^8.2.6",
+		"pinia": "^2.0.13",
+		"vue-request": "^1.2.4",
+		"vue-router": "^4.0.14"
+	}
 }
